@@ -1,0 +1,20 @@
+Package: RMRAINGEN
+Maintainer: Emanuele Cordano <emanuele.cordano@gmail.com>
+License: GPL (>= 2)
+Title: RMRAINGEN (R Multi-site RAINfall GENeretor): a
+    package to generate daily time series of rainfall from monthly mean values
+Type: Package
+Author: Emanuele Cordano
+Description: This package contains functions and S3 methods for spatial
+    multi-site stochastic generation of daily precipitation.
+    Bugs/comments/questions/collaboration of any kind are warmly welcomed.
+Version: 1.0
+Repository: CRAN
+Date/Publication: 2011-08-12 14:30:10
+Packaged: 2011-08-12 07:38:22 UTC; ecor
+Date: 2012-01-17
+Depends:
+    R (>= 2.13),
+    copula,
+    RGENERATE,RMAWGEN,blockmatrix,Matrix
+URL: NA
