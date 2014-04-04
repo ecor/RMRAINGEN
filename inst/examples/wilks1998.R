@@ -26,7 +26,7 @@ library(RMRAINGEN)
 p0_v <- c(0.69,0.73)
 rho_range <- c(0,1)
 
-x <- seq(from=min(rho_range),to=max(rho_range),by=0.01)
+x <- seq(from=min(rho_range),to=max(rho_range),by=0.001)
 
 xrange <- range(x)
 yrange <- xrange
