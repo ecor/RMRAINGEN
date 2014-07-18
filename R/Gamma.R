@@ -42,7 +42,7 @@ NULL
 #' In case the argument \code{lag} is a vector wirh length more than one, the function returns a list of the above-cited return object for each value of the vector \code{lag}.
 #' 
 #' 
-#' @note This functon is useful to generate the serial cross-correlation matrices for no precipitation occurence for Yule-Walker Equations. In case \code{lag} is a vactor, \code{nearPD} must be a vector of the same size, 
+#' @note This functon is useful to generate the serial cross-correlation matrices for no precipitation occurrence for Yule-Walker Equations. In case \code{lag} is a vactor, \code{nearPD} must be a vector of the same size, 
 #' default is \code{(lag==0)}.
 #'  
 #' See the R code for major details
@@ -74,8 +74,8 @@ NULL
 #' 
 #' CCGamma <- CCGamma(data=prec_mes,lag=0:2,tolerance=0.001,only.matrix=FALSE)
 #' 
-#' 
-#' CCGamma_monthly <- CCGamma(data=prec_mes,lag=0,tolerance=0.001,only.matrix=FALSE,sample="monthly",origin=origin)
+#' ## Not Run in the examples, uncomment to run the following line
+#' ## CCGamma_monthly <- CCGamma(data=prec_mes,lag=0,tolerance=0.001,only.matrix=FALSE,sample="monthly",origin=origin)
 #' 
 #' 
 #' @export

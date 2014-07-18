@@ -6,7 +6,7 @@ NULL
 #' @param rc.names names of the states. 
 #' @export
 #' 
-#' @reference \url{http://stats.stackexchange.com/questions/36099/estimating-markov-transition-probabilities-from-sequence-data?rq=1}
+#' @references \url{http://stats.stackexchange.com/questions/36099/estimating-markov-transition-probabilities-from-sequence-data?rq=1}
 #' 
 #' @note Function rturn \code{NULL} if \code{data} contains \code{NA}s values.
 #' @seealso \code{\link{CCGamma}}

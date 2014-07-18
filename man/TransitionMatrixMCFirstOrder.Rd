@@ -55,6 +55,9 @@ pwcalc <- pd*pdv["dry","wet"]+(1-pd)*pdv["wet","wet"]
 pd-pdcalc
 pw-pwcalc
 }
+\references{
+\url{http://stats.stackexchange.com/questions/36099/estimating-markov-transition-probabilities-from-sequence-data?rq=1}
+}
 \seealso{
 \code{\link{CCGamma}}
 }

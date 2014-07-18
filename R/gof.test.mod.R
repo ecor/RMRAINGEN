@@ -20,7 +20,7 @@ NULL
 #' 
 #' 
 
-
+## reference
 ## modified signature for 'ks.test'  or other test function suitably to run this script
 gof.test.mod <- function(x,y="pexp",what="ks.test",par=list(),...){
 	x <- sort(x)

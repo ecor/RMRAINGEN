@@ -30,7 +30,7 @@ year_max <- 1990
 
 period <- PRECIPITATION$year>=year_min & PRECIPITATION$year<=year_max
 
-period <- period & (PRECIPITATION$month %in% c(9,10,11)) ## AUTUMN 
+###period <- period & (PRECIPITATION$month %in% c(9,10,11)) ## AUTUMN 
 
 station <- names(PRECIPITATION)[!(names(PRECIPITATION) %in% c("day","month","year"))]
 prec_mes <- PRECIPITATION[period,station]
@@ -43,13 +43,12 @@ for (it in names(prec_mes)) {
 }
 
 prec_mes <- prec_mes[,accepted]
-names <- c("T0083","T0090","T0129")
+names <- c("T0083","T0090","T0129") ###"T0083",
 prec_mes <- prec_mes[,names(prec_mes) %in% names]
 names <- names(prec_mes)
 
 
-p0_v <- diag(continuity_ratio(prec_mes,lag=0)$nooccurence)
-names(p0_v) <-  names
+
 rho_range <- c(0,1)
 
 x <- seq(from=min(rho_range),to=max(rho_range),by=0.01)
@@ -62,30 +61,45 @@ main <- "Xi Correlation vs Gaussian z Correlation"#"Correlation dependence like 
 cnt=1
 legend <- NA
 type <- NA
-for (l in names) { 
+
+seasons <- list(DJF=c(12,1,2),MAM=c(3,4,5),JJA=c(6,7,8),SON=c(9,10,11)) 
+for (seas in names(seasons)) {	
 	
+	season <- PRECIPITATION$month %in% seasons[[seas]] 
 	
-	p0_v1 <- p0_v[l]
+	p0_v <- diag(continuity_ratio(prec_mes[season,],lag=0)$nooccurence)
 	
-	for (c in names) { 
+	names(p0_v) <-  names
+	
+	print(seas)
+	print(p0_v)
+	for (l in names) { 
 		
-		p0_v2 <- p0_v[c] 
 		
+		p0_v1 <- p0_v[l]
 		
-		y <- omega(x=x,p0_v1=p0_v1,p0_v2=p0_v2,correlation=TRUE)
-		if ((cnt==1) & (p0_v1<p0_v2)) {
+		for (c in names) { 
 			
-			plot(x,y,xlim=xrange,ylim=yrange,type="l",lty=cnt,xlab=xlab,ylab=ylab,main=main)
-			legend[cnt] <- paste(l,c,sep="-")
-			type[cnt] <- cnt
-			cnt=cnt+1
-		} else if (p0_v1<p0_v2) {
-			lines(x,y,lty=cnt)
-			legend[cnt] <- paste(l,c,sep="-")
-			type[cnt] <- cnt
-			cnt=cnt+1
+			p0_v2 <- p0_v[c] 
+			
+			
+			y <- omega(x=x,p0_v1=p0_v1,p0_v2=p0_v2,correlation=TRUE)
+			if ((cnt==1) & (p0_v1<p0_v2)) {
+				
+				plot(x,y,xlim=xrange,ylim=yrange,type="l",lty=cnt,xlab=xlab,ylab=ylab,main=main)
+				legend[cnt] <- paste(l,c,sep="-")
+				legend[cnt] <- paste(legend[cnt]," (",seas,")",sep="")
+				type[cnt] <- cnt
+				cnt=cnt+1
+			} else if (p0_v1<p0_v2) {
+				lines(x,y,lty=cnt)
+				legend[cnt] <- paste(l,c,sep="-")
+				legend[cnt] <- paste(legend[cnt]," (",seas,")",sep="")
+				type[cnt] <- cnt
+				cnt=cnt+1
+			}
 		}
+		
 	}
-	
 }
-legend("bottomright",lty=type,legend=legend)
+legend("topleft",lty=type,legend=legend)

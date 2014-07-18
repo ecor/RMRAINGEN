@@ -57,6 +57,6 @@ origin <- paste(year_min,1,1,sep="-")
 dw.spell <- dw.spell(prec_mes,origin=origin)
 dw.spell.dry <- dw.spell(prec_mes,origin=origin,extract="dry")
 
-hist(dw.spell.dry)
+hist(dw.spell.dry$T0001$spell_length)
 }
 

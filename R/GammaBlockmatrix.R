@@ -12,7 +12,8 @@ NULL
 #' @param p numeric order $p$ of the auto-regeression 
 #' @param ... further argments of \code{\link{CCGamma}}
 #' 
-#' @details INCOMPLETE TO DO 
+#' @details This a wrapper for \code{\link{CCGamma}} with the option \code{only.matrix=TRUE} and the function value is transformed into a \code{\link{blockmatrix}} object. 
+#' 
 #' @import blockmatrix Matrix
 # @rdaname CCGamma
 #' @seealso  \code{\link{CCGamma}},\code{\link{continuity_ratio}},\code{\link{omega_inv}},\code{\link{omega}}
@@ -42,23 +43,27 @@ NULL
 #' CCGamma <- CCGammaToBlockmatrix(data=prec_mes,lag=0,p=p,tolerance=0.001)
 #' CCGamma_1 <- CCGammaToBlockmatrix(data=prec_mes,lag=1,p=p,tolerance=0.001)
 #' 
-#' ## Alternatively, recommended ..... 
-#' CCGamma <- CCGammaToBlockmatrix(data=prec_mes,lag=0,p=p+1,tolerance=0.001)
 #' 
-#' CCGamma0 <- CCGamma[1:p,1:p]
-#' CCGamma1 <- CCGamma[(1:p),(1:p)+1]
+#' ### Alternatively, recommended ..... 
+#' ## Not Run in the examples, uncomment to run the following line
+#' # CCGamma <- CCGammaToBlockmatrix(data=prec_mes,lag=0,p=p+1,tolerance=0.001)
 #' 
-#' CCGamma0_inv <- solve(CCGamma0)
+#' # CCGamma0 <- CCGamma[1:p,1:p]
+#' # CCGamma1 <- CCGamma[(1:p),(1:p)+1]
 #' 
-#' a1 <- blockmatmult(CCGamma0,CCGamma0_inv)
-#' a2 <- blockmatmult(CCGamma1,CCGamma0_inv)
-#' 
+#' # CCGamma0_inv <- solve(CCGamma0)
 #' 
 #' 
-#' CCGamma_1t <- t(CCGamma1)
-#' CCGamma_0t <- t(CCGamma0)
+#' ## Not Run in the examples, uncomment to run the following line
+#' #a1 <- blockmatmult(CCGamma0,CCGamma0_inv)
+#' # a2 <- blockmatmult(CCGamma1,CCGamma0_inv)
 #' 
-#' A <- t(solve(CCGamma_0t,CCGamma_1t))
+#' 
+#' 
+#' # CCGamma_1t <- t(CCGamma1)
+#' #CCGamma_0t <- t(CCGamma0)
+#' 
+#' # A <- t(solve(CCGamma_0t,CCGamma_1t))
 #' 
 #' 
 #' 
