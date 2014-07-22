@@ -45,11 +45,13 @@ for (it in names(prec_mes)) {
 
 prec_mes <- prec_mes[,accepted]
 ## the dateset is reduced!!!
-prec_mes <- prec_mes[,1:3]
+prec_mes <- prec_mes[,1:2]
 
 p <- 1 ## try p <- 2 !!!
 CCGamma <- CCGammaToBlockmatrix(data=prec_mes,lag=0,p=p,tolerance=0.001)
-CCGamma_1 <- CCGammaToBlockmatrix(data=prec_mes,lag=1,p=p,tolerance=0.001)
+
+## Not Run in the examples, uncomment to run the following line
+# CCGamma_1 <- CCGammaToBlockmatrix(data=prec_mes,lag=1,p=p,tolerance=0.001)
 
 
 ### Alternatively, recommended .....

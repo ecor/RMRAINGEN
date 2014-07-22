@@ -55,8 +55,10 @@ NULL
 #' origin <- paste(year_min,1,1,sep="-")
 #' 
 #' 
-#' fit_monthly  <- fitdistrForPrecipitation(data=prec_mes,dname="exp",start=NULL,sample="monthly",origin=origin)
-#' fit_monthly_gamma  <- fitdistrForPrecipitation(data=prec_mes,dname="exp",start=NULL,sample="monthly",origin=origin)
+#' fit_monthly  <- fitdistrForPrecipitation(data=prec_mes,dname="exp",
+#' 					start=NULL,sample="monthly",origin=origin)
+#' fit_monthly_gamma  <- fitdistrForPrecipitation(data=prec_mes,dname="gamma",
+#' 						 start=NULL,sample="monthly",origin=origin)
 #'
 #' 
 #' 

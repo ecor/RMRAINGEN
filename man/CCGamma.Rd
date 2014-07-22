@@ -132,12 +132,15 @@ for (it in names(prec_mes)) {
 
 prec_mes <- prec_mes[,accepted]
 ## the dateset is reduced!!!
-prec_mes <- prec_mes[,1:3]
+prec_mes <- prec_mes[,1:2]
 
-CCGamma <- CCGamma(data=prec_mes,lag=0:2,tolerance=0.001,only.matrix=FALSE)
+CCGamma <- CCGamma(data=prec_mes,lag=0,tolerance=0.001,only.matrix=FALSE)
+## Not Run in the examples, uncomment to run the following line
+## CCGamma <- CCGamma(data=prec_mes,lag=0:2,tolerance=0.001,only.matrix=FALSE)
 
 ## Not Run in the examples, uncomment to run the following line
-## CCGamma_monthly <- CCGamma(data=prec_mes,lag=0,tolerance=0.001,only.matrix=FALSE,sample="monthly",origin=origin)
+## CCGamma_monthly <- CCGamma(data=prec_mes,lag=0,tolerance=0.001,only.matrix=FALSE,
+#                     sample="monthly",origin=origin)
 }
 \author{
 Emanuele Cordano

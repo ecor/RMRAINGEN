@@ -55,24 +55,26 @@ NULL
 #'
 #' prec_mes <- prec_mes[,accepted]
 #' ## the dateset is reduced!!! 
-#' prec_mes <- prec_mes[,1:3]
+#' prec_mes <- prec_mes[,1:2]
 #' 
-#' coeff <- CoeffYWeq(data=prec_mes,p=1,tolerance=0.001)
+#' ## Not Run in the examples, uncomment to run the following lines 
+#' # coeff <- CoeffYWeq(data=prec_mes,p=1,tolerance=0.001)
 #' 
-#' generation <- generate(coeff,n=10,names=names(prec_mes))
+#' # generation <- generate(coeff,n=10,names=names(prec_mes))
 #' 
 #'
 #
 
 
-#' ## Not Run in the examples, uncomment to run the following line 
+#' ## Not Run in the examples, uncomment to run the following lines 
 #' # origin <- paste(year_min,1,1,sep="-")
 #' 
 #'
 #' # coeff_monthly <- CoeffYWeq(data=prec_mes,p=1,tolerance=0.001,sample="monthly",origin=origin)
 #' 
 #' 
-#' # generation_monthly <- generate(coeff_monthly,year_min=year_min,year_max=year_max,names=names(prec_mes))
+#' # generation_monthly <- generate(coeff_monthly,year_min=year_min,year_max=year_max,
+#' #					names=names(prec_mes))
 #' 
 #' 
 #' ###  generation with CCGammaObject
@@ -81,8 +83,10 @@ NULL
 #' 
 #' # generation_CCGamma <- generate(x=CCGamma,n=100,names=names(prec_mes)) 
 #' 
-#' # CCGamma_monthly <- CCGamma(data=prec_mes,lag=0,tolerance=0.001,only.matrix=FALSE,sample="monthly",origin=origin)
-#' ## generation_CCGamma <- generate(x=CCGamma_monthly,year_min=year_min,year_max=year_max,names=names(prec_mes)) 
+#' # CCGamma_monthly <- CCGamma(data=prec_mes,lag=0,tolerance=0.001,only.matrix=FALSE,
+#' #                            sample="monthly",origin=origin)
+#' ## generation_CCGamma <- generate(x=CCGamma_monthly,year_min=year_min,year_max=year_max,
+#' ##                                names=names(prec_mes)) 
 #' 
 
 

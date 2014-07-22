@@ -50,6 +50,32 @@ if (pkg_name %in% oo[,"Package"]) {
 	
 	install.packages(pkg_dir,type="source",repos=NULL)
 }
+## 
+toCran <- TRUE
+
+
+##
+cran_pkg_path <- paste(path,"toCran",sep="/")
+cran_pkg_dir <- paste(cran_pkg_path,pkg_name,sep="/")
+
+##
+
+
+if (toCran) { 
+	
+	system(paste("cp -R",pkg_dir,cran_pkg_path,sep=" ")) 
+	cran_pkg_hidden <- paste(cran_pkg_dir,".git*",sep="/")
+	system(paste("rm -rf",cran_pkg_hidden,sep=" "))
+	cran_pkg_unuseful <- paste(cran_pkg_dir,"LICENSE",sep="/")
+	system(paste("rm -rf",cran_pkg_unuseful,sep=" "))
+	cran_pkg_unuseful <- paste(cran_pkg_dir,"LICENSE",sep="/")
+	system(paste("rm -rf",cran_pkg_unuseful,sep=" "))
+	cran_pkg_unuseful <- paste(cran_pkg_dir,"Read-and-delete-me",sep="/")
+	system(paste("rm -rf",cran_pkg_unuseful,sep=" "))
+	cran_pkg_unuseful <- paste(cran_pkg_dir,"roxygenize.R",sep="/")
+	system(paste("rm -rf",cran_pkg_unuseful,sep=" "))
+}
+
 
 
 

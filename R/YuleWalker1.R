@@ -20,7 +20,7 @@ NULL
 #' If they are missing (and then \code{NULL}) , they are also calculated from the original dataset (argument \code{data}). In this last case, the coefficients can be estiomated differently for each monthly setting \code{sample} equal to \code{"monthly"}.
 #' 
 #' 
-#' @seealso \code{\link{CCGammaToBlockmatrix}}
+#' @seealso \code{\link{CCGammaToBlockmatrix}},\code{\link{generatePrecipitationAmount}}
 #' 
 #' @export
 #' @examples 
@@ -46,14 +46,22 @@ NULL
 #'
 #' prec_mes <- prec_mes[,accepted]
 #' ## the dateset is reduced!!! 
-#' prec_mes <- prec_mes[,1:3]
+#' prec_mes <- prec_mes[,1:2]
 #' 
-#' coeff <- CoeffYWeq(data=prec_mes,p=1,tolerance=0.001)
+#' # ## Not Run in the examples, uncomment to run the following line
+#' # coeff <- CoeffYWeq(data=prec_mes,p=1,tolerance=0.001)
 #' 
-#' origin <- paste(year_min,1,1,sep="-")
+#' #
+#' # 
+#' # Alternatively the coefficients of Vector Auto-Regressive Model 
+#' # can be separately calculated for each month   
 #' 
+#' # ## Not Run in the examples, uncomment to run the following line
+#' #origin <- paste(year_min,1,1,sep="-")
+#' #
+#' #
 #' 
-#' coeff_monthly <- CoeffYWeq(data=prec_mes,p=1,tolerance=0.001,sample="monthly",origin=origin)
+#' #coeff_monthly <- CoeffYWeq(data=prec_mes,p=1,tolerance=0.001,sample="monthly",origin=origin)
 #' 
 #'
 
