@@ -103,7 +103,7 @@ NULL
 #' 
 #
 #
-WilksGaussianization <- function (x,data=x,gauss=NULL,valmin=0.5,tolerance=0.001,prec_tolerance=c(0.05,2.5),iterations=20,force.precipitation.value=TRUE,seed=1234,shuffle=list(e1=1:ncol(x)),...) {
+WilksGaussianization <- function (x,data=x,gauss=NULL,valmin=0.5,tolerance=0.001,prec_tolerance=c(0.05,2.5),iterations=20,force.precipitation.value=TRUE,seed=1234,shuffle=list(e1=1:ncol(x)),p=1,args_var=NULL,...) {
 	
 	if (!is.list(shuffle) | is.data.frame(shuffle)) shuffle <- list(v1=shuffle)
 	
@@ -141,7 +141,22 @@ WilksGaussianization <- function (x,data=x,gauss=NULL,valmin=0.5,tolerance=0.001
 	
 	
 	ccgamma <- CCGamma(data=x, lag = lag,valmin=valmin,only.matrix=TRUE,tolerance=tolerance)
+	### change ccgamma
 	
+	ccgamma_block <- CCGammaToBlockmatrix(data=x,lag=0,valmin=valmin,tolerance=tolerance,p=p+1)
+	
+	CCGamma0 <- as.blockmatrix(ccgamma_block[1:p,1:p],nrow=p,ncol=p)
+	CCGamma1 <- as.blockmatrix(ccgamma_block[(1:p),(1:p)+1],nrow=p,ncol=p)
+	CCGamma_1t <- t(CCGamma1)
+	CCGamma_0t <- t(CCGamma0)
+	A <- t(solve(CCGamma_0t,CCGamma_1t,symm.precond=TRUE)) ### A blockmatrix from Yule-Walker Equation
+	
+	
+	eigenvs <- abs(eigen(as.matrix(A))$values)
+	stable <- eigenvs<=1
+	stable <- length(which(stable))==length(stable)
+	ccgamma <- ccgamma_block[1,1]
+	### END  change ccgamma
 	chol_ccg <- t(as.matrix(chol(ccgamma)))
 	
 	out <- gauss
@@ -185,7 +200,31 @@ WilksGaussianization <- function (x,data=x,gauss=NULL,valmin=0.5,tolerance=0.001
 			gauss[cond] <- out[cond]
 			
 
-		
+			#### INSERT AUTOREGRESSION WITH VARs 
+			if (p>0) { 
+				
+				###
+				args_var <- c(list(y=out,p=p),args_var)
+				var <- do.call("VAR",args=args_var)
+				res <- as.data.frame(residuals(var))
+				str(res)
+				stop()
+				###
+				
+				if (!stable) {
+					print(eigenves)
+					stop("Error A eigenvalues greater than 1 in modulus!!!")
+					
+				}
+				xprev <- 
+				print(A)
+				print(eigen(as.matrix(A))$values)
+				### fare un generate.blockmatrix .... 
+				
+				stop()
+			
+			}
+			
 		
 	}
 	
@@ -225,3 +264,38 @@ WilksGaussianization <- function (x,data=x,gauss=NULL,valmin=0.5,tolerance=0.001
 	
 }
 
+
+NULL
+#'
+#' 
+#' 
+#' 
+#' 
+#' 
+
+generate.blockmatrix <- function(x,xprev=NULL,noise=noise,n=10,x.noise.gen=NULL,...) {
+	
+	p <- nrow(x)-1
+	if (p>1) count <- 1:p 
+	
+	
+	if (!is.null(noise)) n <- nrow(noise)
+	
+	if (is.null(noi))
+	if (p>1) {
+	 	noisep <- NULL
+		for (i in 0:(p-1)) {
+			
+			count <- (p+1):n-l
+			noisep <- cbind(noisep,noise[count,])
+			
+		}
+		
+		print(noisep)
+		###### TO DOOO
+		### GENERARE DA P+1 IN POI ......
+		
+	}
+	
+	
+} 
